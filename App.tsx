@@ -1,20 +1,44 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import {
+  useFonts,
+  Roboto_400Regular,
+  Roboto_500Medium,
+  Roboto_700Bold,
+  Roboto_900Black,
+} from "@expo-google-fonts/roboto";
+import { ThemeProvider } from "styled-components";
+import { useEffect } from "react";
+import { Provider } from "react-redux";
+import theme from "./src/global/theme";
+import store from "./src/features/store";
+import * as SplashScreen from "expo-splash-screen";
+import AppNavigation from "./src/navigation/AppNavigation";
 
 export default function App() {
+  const [fontsLoaded, fontError] = useFonts({
+    Roboto_400Regular,
+    Roboto_500Medium,
+    Roboto_700Bold,
+    Roboto_900Black,
+  });
+
+  useEffect(() => {
+    async function prepare() {
+      await SplashScreen.preventAutoHideAsync();
+    }
+    prepare();
+  }, []);
+
+  if (!fontsLoaded && !fontError) {
+    return undefined;
+  } else {
+    SplashScreen.hideAsync();
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <ThemeProvider theme={theme}>
+      <Provider store={store}>
+        <AppNavigation />
+      </Provider>
+    </ThemeProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
