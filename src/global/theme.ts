@@ -5,11 +5,10 @@ export default {
         gray: 'rgba(137, 137, 137, 1)',
     },
     fonts: {
-        regular: "Poppins_400Regular",
-        medium: "Poppins_500Medium",
-        semiBold: "Poppins_600SemiBold",
-        bold: "Poppins_700Bold",
-        extraBold: "Poppins_800ExtraBold"
+        regular: "Roboto_400Regular",
+        medium: "Roboto_500Medium",
+        bold: "Roboto_700Bold",
+        extraBold: "Roboto_900Black"
     },
     fontSize: {
         s: 7,
