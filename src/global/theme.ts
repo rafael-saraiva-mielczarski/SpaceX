@@ -2,7 +2,7 @@ export default {
     colors: {
         black: '#000000',
         white: '#ffffff',
-        gray: 'rgba(137, 137, 137, 1)',
+        input: '#EBEBEB',
     },
     fonts: {
         regular: "Roboto_400Regular",
