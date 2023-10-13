@@ -12,7 +12,7 @@ export default function Start() {
         <S.Title>Acompanhe nossos foguetes</S.Title>
       </View>
       <S.Astronaut source={require("../../assets/astronaut.png")} />
-      <AppButton onPress={() => navigation.navigate("Home")}>
+      <AppButton onPress={() => navigation.navigate("Home")} bgColor="black">
         Explorar
       </AppButton>
     </S.StyledStart>

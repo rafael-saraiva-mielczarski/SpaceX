@@ -3,6 +3,7 @@ export default {
         black: '#000000',
         white: '#ffffff',
         input: '#EBEBEB',
+        bgCard: '#E0E0E0'
     },
     fonts: {
         regular: "Roboto_400Regular",

@@ -7,6 +7,7 @@ type ButtonProps = {
   children: ReactNode;
   color?: string;
   borderColor?: string;
+  bgColor?: string;
   onPress: () => void;
 };
 
@@ -14,10 +15,15 @@ export default function AppButton({
   children,
   color,
   borderColor,
+  bgColor,
   onPress,
 }: ButtonProps) {
   return (
-    <StyledAppButton onPress={onPress} borderColor={borderColor}>
+    <StyledAppButton
+      onPress={onPress}
+      borderColor={borderColor}
+      bgColor={bgColor}
+    >
       <StyledText color={color}>{children}</StyledText>
     </StyledAppButton>
   );
@@ -26,6 +32,7 @@ export default function AppButton({
 const StyledAppButton = styled.TouchableOpacity`
   border: 2px solid white;
   border-color: ${(props) => (props.borderColor === "black" ? "#000" : "#fff")};
+  background-color: ${(props) => (props.bgColor === "black" ? "#000" : "#fff")};
   border-radius: 10px;
   padding: 12px 50px;
 `;
