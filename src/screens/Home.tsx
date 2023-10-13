@@ -4,15 +4,20 @@ import Header from "../components/Header";
 import Search from "../components/Search";
 import LaunchList from "../features/launches/LaunchList";
 import { useAppSelector } from "../hooks/useAppSelector";
+import Loading from "../components/Loading";
+import Error from "../components/Error";
 
 export default function Home() {
   const isLoading = useAppSelector((state) => state.launches.isLoading);
+  const error = useAppSelector((state) => state.launches.error);
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <S.StyledHome>
         <Header justifyContent="center">
           <Search />
         </Header>
+        {isLoading && <Loading>Carregando nossas missões</Loading>}
+        {error && <Error>Houve um erro ao carregar as missões!</Error>}
         <LaunchList />
       </S.StyledHome>
     </TouchableWithoutFeedback>
