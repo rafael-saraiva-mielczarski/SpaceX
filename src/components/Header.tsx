@@ -23,6 +23,7 @@ const HeaderContainer = styled.View`
 const HeaderOptions = styled.View`
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: ${(props) => props.justifyContent};
   padding: ${RFValue(40, deviceWidth)}px 15px 15px;
 `;

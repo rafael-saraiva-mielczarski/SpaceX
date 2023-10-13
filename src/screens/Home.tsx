@@ -12,14 +12,14 @@ export default function Home() {
   const error = useAppSelector((state) => state.launches.error);
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <S.StyledHome>
+      <S.HomeContainer>
         <Header justifyContent="center">
           <Search />
         </Header>
         {isLoading && <Loading>Carregando nossas missões</Loading>}
         {error && <Error>Houve um erro ao carregar as missões!</Error>}
         <LaunchList />
-      </S.StyledHome>
+      </S.HomeContainer>
     </TouchableWithoutFeedback>
   );
 }

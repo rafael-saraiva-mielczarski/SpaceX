@@ -33,9 +33,9 @@ export interface Launch {
             block: number;
             payloads: {
                 payload_id: string;
-                norad_id: number[]; 
+                norad_id: number[];
                 reused: boolean;
-                customers: string[]; 
+                customers: string[];
                 nationality: string;
                 manufacturer: string;
                 payload_type: string;
@@ -68,7 +68,7 @@ export interface Launch {
             ship: string | null;
         };
     };
-    ships: string[]; 
+    ships: string[];
     telemetry: {
         flight_club: string | null;
     };
@@ -95,7 +95,7 @@ export interface Launch {
         wikipedia: string;
         video_link: string;
         youtube_id: string;
-        flickr_images: string[]; 
+        flickr_images: string[];
     };
     details: string;
     static_fire_date_utc: string;

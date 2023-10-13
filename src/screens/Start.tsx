@@ -6,7 +6,7 @@ import { useAppNavigation } from "../hooks/useAppNavigation";
 export default function Start() {
   const navigation = useAppNavigation();
   return (
-    <S.StyledStart>
+    <S.StartContainer>
       <View>
         <S.Logo source={require("../../assets/spacex.png")} />
         <S.Title>Acompanhe nossos foguetes</S.Title>
@@ -15,6 +15,6 @@ export default function Start() {
       <AppButton onPress={() => navigation.navigate("Home")} bgColor="black">
         Explorar
       </AppButton>
-    </S.StyledStart>
+    </S.StartContainer>
   );
 }
