@@ -7,8 +7,9 @@ import AppButton from "../../components/AppButton";
 type LaunchProps = {
   launchName: string;
   launchNumber: number;
-  launchYear: number;
+  launchYear: string;
   rocketType: string;
+  successuful: boolean;
 };
 
 export default function LaunchCard({
@@ -16,6 +17,7 @@ export default function LaunchCard({
   launchNumber,
   launchYear,
   rocketType,
+  successuful,
 }: LaunchProps) {
   const navigation = useAppNavigation();
   return (
@@ -32,6 +34,12 @@ export default function LaunchCard({
       <StyledLaunchInfo>
         <StyledLaunchText>Foguete: </StyledLaunchText>
         <StyledLaunchData>{rocketType}</StyledLaunchData>
+      </StyledLaunchInfo>
+      <StyledLaunchInfo>
+        <StyledLaunchText>Sucesso: </StyledLaunchText>
+        <StyledLaunchData>
+          {successuful === true ? "Sim" : "Nao"}
+        </StyledLaunchData>
       </StyledLaunchInfo>
       <AppButton
         onPress={() => navigation.navigate("Home")}
