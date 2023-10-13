@@ -6,6 +6,7 @@ import LaunchList from "../features/launches/LaunchList";
 import { useAppSelector } from "../hooks/useAppSelector";
 import Loading from "../components/Loading";
 import Error from "../components/Error";
+import { StatusBar } from "react-native";
 
 export default function Home() {
   const isLoading = useAppSelector((state) => state.launches.isLoading);
@@ -13,6 +14,7 @@ export default function Home() {
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <S.HomeContainer>
+        <StatusBar />
         <Header justifyContent="center">
           <Search />
         </Header>

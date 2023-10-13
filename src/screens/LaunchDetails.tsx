@@ -2,14 +2,15 @@ import { RouteProp } from "@react-navigation/native";
 import { RootStackParamList } from "../navigation/AppNavigation";
 import { useAppSelector } from "../hooks/useAppSelector";
 import { Launch } from "../features/launches/LaunchInterface";
+import { useAppNavigation } from "../hooks/useAppNavigation";
+import { StatusBar, Text } from "react-native";
 import * as S from "../global/styles";
 import SingleLaunchDetail from "../components/SingleLaunchDetail";
 import Header from "../components/Header";
-import { useAppNavigation } from "../hooks/useAppNavigation";
 import LaunchInfo from "../components/LaunchInfo";
 import LaunchPatch from "../components/LaunchPatch";
-import { Text } from "react-native";
 import HrLine from "../components/HrLine";
+import LaunchVideo from "../components/LaunchVideo";
 
 type RouteProps = RouteProp<RootStackParamList, "LaunchDetails">;
 
@@ -22,6 +23,7 @@ export default function LaunchDetails({ route }: any) {
 
   return (
     <S.LaunchDetailsContainer>
+      <StatusBar />
       <Header>
         <S.ReturnIcon
           name="arrowleft"
@@ -43,6 +45,7 @@ export default function LaunchDetails({ route }: any) {
         </S.LaunchMid>
         <Text>Leia o artigo interio</Text>
         <HrLine />
+        <LaunchVideo videoID={launch?.links.youtube_id} />
       </S.LaunchDetailsMain>
     </S.LaunchDetailsContainer>
   );
