@@ -6,12 +6,14 @@ interface LaunchInitialState {
     launches: Launch[]
     isLoading: boolean
     error: boolean
+    launch: Launch | undefined
 }
 
 const initialState: LaunchInitialState = {
     launches: [],
     isLoading: false,
     error: false,
+    launch: undefined
 }
 
 const launchesSlice = createSlice({
@@ -30,10 +32,14 @@ const launchesSlice = createSlice({
             state.error = action.payload
         },
         fetchSingleLaunch(state, action) { },
+        getLaunchId(state, action: PayloadAction<number>) {
+            state.launch = state.launches.find(state => state.flight_number === action.payload)
+        }
+
     }
 })
 
-export const { fetchingLaunches, fetchLaunchesSuccess, fetchingFailed, fetchSingleLaunch } = launchesSlice.actions;
+export const { fetchingLaunches, fetchLaunchesSuccess, fetchingFailed, fetchSingleLaunch, getLaunchId } = launchesSlice.actions;
 
 export function fetchLaunches() {
     return async function (dispatch: any) {

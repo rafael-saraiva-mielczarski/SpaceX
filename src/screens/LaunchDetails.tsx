@@ -11,15 +11,21 @@ import LaunchInfo from "../components/LaunchInfo";
 import LaunchPatch from "../components/LaunchPatch";
 import HrLine from "../components/HrLine";
 import LaunchVideo from "../components/LaunchVideo";
+import { useAppDispatch } from "../hooks/useAppDispatch";
+import { useEffect } from "react";
+import { getLaunchId } from "../features/launches/launchesSlice";
 
 type RouteProps = RouteProp<RootStackParamList, "LaunchDetails">;
 
 export default function LaunchDetails({ route }: any) {
-  const navigation = useAppNavigation();
   const { launchID } = route.params;
-  const launch: Launch | undefined = useAppSelector((state) =>
-    state.launches.launches.find((launch) => launch.flight_number === launchID)
-  );
+  const navigation = useAppNavigation();
+  const dispatch = useAppDispatch();
+  const launch = useAppSelector((state) => state.launches.launch);
+
+  useEffect(() => {
+    dispatch(getLaunchId(launchID));
+  }, []);
 
   return (
     <S.LaunchDetailsContainer>
