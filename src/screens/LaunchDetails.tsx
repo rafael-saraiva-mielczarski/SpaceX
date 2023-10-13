@@ -3,7 +3,7 @@ import { RootStackParamList } from "../navigation/AppNavigation";
 import { useAppSelector } from "../hooks/useAppSelector";
 import { Launch } from "../features/launches/LaunchInterface";
 import { useAppNavigation } from "../hooks/useAppNavigation";
-import { StatusBar, Text } from "react-native";
+import { StatusBar, Text, View } from "react-native";
 import * as S from "../global/styles";
 import SingleLaunchDetail from "../components/SingleLaunchDetail";
 import Header from "../components/Header";
@@ -14,6 +14,7 @@ import LaunchVideo from "../components/LaunchVideo";
 import { useAppDispatch } from "../hooks/useAppDispatch";
 import { useEffect } from "react";
 import { getLaunchId } from "../features/launches/launchesSlice";
+import AppWebView from "../components/AppWebView";
 
 type RouteProps = RouteProp<RootStackParamList, "LaunchDetails">;
 
@@ -37,6 +38,7 @@ export default function LaunchDetails({ route }: any) {
         />
         <S.LaunchName>{launch?.mission_name}</S.LaunchName>
       </Header>
+
       <S.LaunchDetailsMain>
         <S.LaunchDetailsStart>
           <SingleLaunchDetail launch={launch} />
@@ -46,12 +48,14 @@ export default function LaunchDetails({ route }: any) {
           <LaunchInfo data={launch?.launch_site.site_name}>
             Local de lançamento:{" "}
           </LaunchInfo>
-          <S.Description>Detalhes do lançamento:</S.Description>
-          <S.LaunchDescription>{launch?.details}</S.LaunchDescription>
+          <LaunchInfo data={launch?.details}>
+            Detalhes do lançamento:{" "}
+          </LaunchInfo>
         </S.LaunchMid>
-        <Text>Leia o artigo interio</Text>
         <HrLine />
         <LaunchVideo videoID={launch?.links.youtube_id} />
+        <HrLine />
+        <AppWebView link={launch?.links.article_link as string} />
       </S.LaunchDetailsMain>
     </S.LaunchDetailsContainer>
   );

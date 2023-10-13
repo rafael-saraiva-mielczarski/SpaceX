@@ -45,8 +45,8 @@ justify-content: space-between;
 `;
 
 export const LaunchMid = styled.View`
-padding: 15px 0;
-align-items: center;
+padding-bottom: 10px;
+
 `;
 
 export const Description = styled.Text`

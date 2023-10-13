@@ -24,12 +24,14 @@ export default function LaunchVideo({ videoID }: LaunchVideoProps) {
   );
 }
 
-const StyledLaunchVideo = styled.View``;
+const StyledLaunchVideo = styled.View`
+  margin: 15px 10px;
+`;
 
 const VideoText = styled.Text`
   font-size: ${({ theme }) => RFValue(theme.fontSize.ml, deviceWidth)}px;
   color: ${({ theme }) => theme.colors.black};
   font-family: ${({ theme }) => theme.fonts.bold};
   text-align: center;
-  margin: 20px 0 10px;
+  margin-bottom: 15px;
 `;

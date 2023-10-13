@@ -20,6 +20,7 @@ export default function LaunchInfo({ children, data }: LaunchInfoProps) {
 const Info = styled.View`
   flex-direction: row;
   margin-bottom: 8px;
+  flex-wrap: wrap;
 `;
 
 const Text = styled.Text`
