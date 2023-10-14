@@ -6,6 +6,7 @@ type TextInputConfig = {
   placeholder: string;
   onChangeText: (value: string) => void;
   maxLength?: number;
+  value?: string | undefined;
 };
 
 interface InputProps {

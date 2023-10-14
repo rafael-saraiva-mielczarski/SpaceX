@@ -31,7 +31,9 @@ width: ${RFValue(160, deviceWidth)}px;
 height: ${RFValue(145, deviceWidth)}px;
 `;
 
-export const HomeContainer = styled.View``;
+export const HomeContainer = styled.View`
+padding-bottom: 200px;
+`;
 
 export const LaunchDetailsContainer = styled.View``;
 

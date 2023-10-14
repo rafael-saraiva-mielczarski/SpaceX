@@ -1,19 +1,23 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, Dispatch, PayloadAction } from "@reduxjs/toolkit";
 import { ILaunch } from "./LaunchInterface";
 import axios from "axios";
 
 interface LaunchInitialState {
     launches: ILaunch[]
+    filteredLaunches: ILaunch[]
+    launch: ILaunch | undefined
+    query: string
     isLoading: boolean
     error: boolean
-    launch: ILaunch | undefined
 }
 
 const initialState: LaunchInitialState = {
     launches: [],
+    filteredLaunches: [],
+    launch: undefined,
+    query: "",
     isLoading: false,
     error: false,
-    launch: undefined
 }
 
 const launchesSlice = createSlice({
@@ -31,18 +35,21 @@ const launchesSlice = createSlice({
             state.isLoading = false
             state.error = action.payload
         },
-        fetchSingleLaunch(state, action) { },
         getLaunchId(state, action: PayloadAction<number>) {
             state.launch = state.launches.find(state => state.flight_number === action.payload)
+        },
+        filterLaunch(state, action: PayloadAction<string>) {
+            state.filteredLaunches = state.launches.filter((launch) =>
+                launch.mission_name.toLowerCase().includes(action.payload.toLowerCase()))
+            state.query = action.payload
         }
-
     }
 })
 
-export const { fetchingLaunches, fetchLaunchesSuccess, fetchingFailed, fetchSingleLaunch, getLaunchId } = launchesSlice.actions;
+export const { fetchingLaunches, fetchLaunchesSuccess, fetchingFailed, getLaunchId, filterLaunch } = launchesSlice.actions;
 
 export function fetchLaunches() {
-    return async function (dispatch: any) {
+    return async function (dispatch: Dispatch) {
         dispatch({ type: "launches/fetchingLaunches" })
 
         try {
