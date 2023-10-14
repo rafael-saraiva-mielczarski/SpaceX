@@ -1,9 +1,9 @@
+import { ILaunch } from "../features/launches/LaunchInterface";
 import styled from "styled-components/native";
 import LaunchInfo from "./LaunchInfo";
-import { Launch } from "../features/launches/LaunchInterface";
 
 type SingleLaunchProps = {
-  launch: Launch | undefined;
+  launch: ILaunch | undefined;
 };
 
 export default function SingleLaunchDetail({ launch }: SingleLaunchProps) {

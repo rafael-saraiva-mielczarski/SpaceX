@@ -1,6 +1,6 @@
-import styled from "styled-components/native";
 import { RFValue } from "react-native-responsive-fontsize";
 import { deviceWidth } from "../global/styles";
+import styled from "styled-components/native";
 
 type LaunchPatchProps = {
   imgURL: string | undefined;

@@ -1,8 +1,8 @@
-import styled from "styled-components/native";
 import { WebView } from "react-native-webview";
 import { StyleSheet } from "react-native";
 import { deviceWidth } from "../global/styles";
 import { RFValue } from "react-native-responsive-fontsize";
+import styled from "styled-components/native";
 
 type WebViewProps = {
   link: string;

@@ -1,7 +1,7 @@
-import styled from "styled-components/native";
 import { ReactNode } from "react";
 import { RFValue } from "react-native-responsive-fontsize";
 import { deviceWidth } from "../global/styles";
+import styled from "styled-components/native";
 
 type HeaderProps = {
   children: ReactNode;

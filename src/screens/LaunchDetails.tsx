@@ -1,24 +1,27 @@
-import { RouteProp } from "@react-navigation/native";
+import type { RouteProp } from "@react-navigation/native";
 import { RootStackParamList } from "../navigation/AppNavigation";
 import { useAppSelector } from "../hooks/useAppSelector";
-import { Launch } from "../features/launches/LaunchInterface";
 import { useAppNavigation } from "../hooks/useAppNavigation";
-import { StatusBar, Text, View } from "react-native";
+import { StatusBar } from "react-native";
+import { useAppDispatch } from "../hooks/useAppDispatch";
+import { useEffect } from "react";
+import { getLaunchId } from "../features/launches/launchesSlice";
 import * as S from "../global/styles";
 import SingleLaunchDetail from "../components/SingleLaunchDetail";
 import Header from "../components/Header";
 import LaunchInfo from "../components/LaunchInfo";
 import LaunchPatch from "../components/LaunchPatch";
 import HrLine from "../components/HrLine";
-import LaunchVideo from "../components/LaunchVideo";
-import { useAppDispatch } from "../hooks/useAppDispatch";
-import { useEffect } from "react";
-import { getLaunchId } from "../features/launches/launchesSlice";
+import VideoPlayer from "../components/VideoPlayer";
 import AppWebView from "../components/AppWebView";
 
-type RouteProps = RouteProp<RootStackParamList, "LaunchDetails">;
+type LaunchDetailsRouteProp = RouteProp<RootStackParamList, "LaunchDetails">;
 
-export default function LaunchDetails({ route }: any) {
+interface ILaunchDetailsProps {
+  route: LaunchDetailsRouteProp;
+}
+
+export default function LaunchDetails({ route }: ILaunchDetailsProps) {
   const { launchID } = route.params;
   const navigation = useAppNavigation();
   const dispatch = useAppDispatch();
@@ -53,7 +56,7 @@ export default function LaunchDetails({ route }: any) {
           </LaunchInfo>
         </S.LaunchMid>
         <HrLine />
-        <LaunchVideo videoID={launch?.links.youtube_id} />
+        <VideoPlayer videoID={launch?.links.youtube_id} />
         <HrLine />
         <AppWebView link={launch?.links.article_link as string} />
       </S.LaunchDetailsMain>

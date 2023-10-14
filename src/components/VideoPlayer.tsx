@@ -1,18 +1,18 @@
-import styled from "styled-components/native";
-import YoutubeIframe from "react-native-youtube-iframe";
 import { useState } from "react";
-import Loading from "./Loading";
 import { deviceWidth } from "../global/styles";
 import { RFValue } from "react-native-responsive-fontsize";
+import styled from "styled-components/native";
+import YoutubeIframe from "react-native-youtube-iframe";
+import Loading from "./Loading";
 
-type LaunchVideoProps = {
+type VideoProps = {
   videoID: string | undefined;
 };
 
-export default function LaunchVideo({ videoID }: LaunchVideoProps) {
+export default function VideoPlayer({ videoID }: VideoProps) {
   const [onReady, setOnReady] = useState<boolean>(false);
   return (
-    <StyledLaunchVideo>
+    <Video>
       <VideoText>Veja como foi</VideoText>
       <YoutubeIframe
         videoId={videoID}
@@ -20,11 +20,11 @@ export default function LaunchVideo({ videoID }: LaunchVideoProps) {
         onReady={() => setOnReady(true)}
       />
       {!onReady && <Loading>Carregando Video</Loading>}
-    </StyledLaunchVideo>
+    </Video>
   );
 }
 
-const StyledLaunchVideo = styled.View`
+const Video = styled.View`
   margin: 15px 10px;
 `;
 

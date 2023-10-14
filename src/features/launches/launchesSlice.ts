@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { ILaunch } from "./LaunchInterface";
 import axios from "axios";
-import { Launch } from "./LaunchInterface";
 
 interface LaunchInitialState {
-    launches: Launch[]
+    launches: ILaunch[]
     isLoading: boolean
     error: boolean
-    launch: Launch | undefined
+    launch: ILaunch | undefined
 }
 
 const initialState: LaunchInitialState = {
@@ -23,7 +23,7 @@ const launchesSlice = createSlice({
         fetchingLaunches(state) {
             state.isLoading = true
         },
-        fetchLaunchesSuccess(state, action: PayloadAction<Launch[]>) {
+        fetchLaunchesSuccess(state, action: PayloadAction<ILaunch[]>) {
             state.launches = action.payload
             state.isLoading = false
         },
@@ -46,7 +46,7 @@ export function fetchLaunches() {
         dispatch({ type: "launches/fetchingLaunches" })
 
         try {
-            const response = await axios.get<Launch[]>('https://api.spacexdata.com/v3/launches');
+            const response = await axios.get<ILaunch[]>('https://api.spacexdata.com/v3/launches');
             dispatch(fetchLaunchesSuccess(response.data))
         } catch (error: any) {
             dispatch(fetchingFailed(error.message))

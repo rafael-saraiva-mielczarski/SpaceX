@@ -1,7 +1,7 @@
-import styled from "styled-components/native";
 import { Dimensions } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
 import { AntDesign } from "@expo/vector-icons"
+import styled from "styled-components/native";
 
 export const deviceWidth = Dimensions.get("window").width;
 export const deviceHeight = Dimensions.get("window").height;

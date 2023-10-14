@@ -1,12 +1,12 @@
 import { Keyboard, TouchableWithoutFeedback } from "react-native";
+import { useAppSelector } from "../hooks/useAppSelector";
+import { StatusBar } from "react-native";
 import * as S from "../global/styles";
 import Header from "../components/Header";
 import Search from "../components/Search";
 import LaunchList from "../features/launches/LaunchList";
-import { useAppSelector } from "../hooks/useAppSelector";
 import Loading from "../components/Loading";
 import Error from "../components/Error";
-import { StatusBar } from "react-native";
 
 export default function Home() {
   const isLoading = useAppSelector((state) => state.launches.isLoading);

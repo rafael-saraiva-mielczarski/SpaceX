@@ -1,8 +1,18 @@
-import styled from "styled-components/native";
 import { RFValue } from "react-native-responsive-fontsize";
 import { deviceWidth } from "../global/styles";
+import styled from "styled-components/native";
 
-export default function Input({ textInputConfig }: any) {
+type TextInputConfig = {
+  placeholder: string;
+  onChangeText: (value: string) => void;
+  maxLength?: number;
+};
+
+interface InputProps {
+  textInputConfig: TextInputConfig;
+}
+
+export default function Input({ textInputConfig }: InputProps) {
   return <StyledInput {...textInputConfig} />;
 }
 

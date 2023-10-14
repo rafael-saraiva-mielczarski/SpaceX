@@ -1,8 +1,8 @@
-import styled from "styled-components/native";
 import { deviceWidth } from "../global/styles";
 import { RFValue } from "react-native-responsive-fontsize";
-import SearchBar from "../features/launches/SearchBar";
 import { FontAwesome } from "@expo/vector-icons";
+import styled from "styled-components/native";
+import SearchBar from "../features/launches/SearchBar";
 
 export default function Search() {
   return (
