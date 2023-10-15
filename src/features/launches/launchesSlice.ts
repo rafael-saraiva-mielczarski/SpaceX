@@ -56,7 +56,11 @@ export function fetchLaunches(offset: number) {
         dispatch(fetchingLaunches())
 
         try {
-            const response = await axios.get<ILaunch[]>(`https://api.spacexdata.com/v3/launches?offset=${offset}&limit=${15}`);
+            const config = {
+                headers: { "content-type": "application/json" }
+            }
+
+            const response = await axios.get<ILaunch[]>(`https://api.spacexdata.com/v3/launches?offset=${offset}&limit=${15}`, config);
 
             dispatch(fetchLaunchesSuccess(response.data))
         } catch (error: any) {

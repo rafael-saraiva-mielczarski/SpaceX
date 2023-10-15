@@ -5,6 +5,8 @@ import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { filterLaunch } from "./launchesSlice";
 import styled from "styled-components/native";
 import Input from "../../components/Input";
+import { RFValue } from "react-native-responsive-fontsize";
+import { Platform } from "react-native";
 
 export default function SearchBar() {
   const launches = useAppSelector((state) => state.launches.launches);
@@ -54,7 +56,7 @@ const StyledIcon = styled.View`
 `;
 
 const SearchIcon = styled(FontAwesome)`
-  font-size: 25px;
-  color: black;
+  font-size: ${Platform.OS === "android" ? RFValue(25) : RFValue(20)}px;
+  color: ${({ theme }) => theme.colors.black};
   padding-right: 10px;
 `;
