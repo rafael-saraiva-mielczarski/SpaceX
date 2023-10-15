@@ -19,7 +19,7 @@ export default function LaunchList() {
   }, [offset]);
 
   function loadMore() {
-    setOffset(offset + 10);
+    setOffset(offset + 15);
   }
 
   return (
@@ -36,7 +36,6 @@ export default function LaunchList() {
       <StyledLaunchList
         data={filteredLaunches}
         showsVerticalScrollIndicator={false}
-        keyExtractor={(item) => item.launch_date_utc.toString()}
         onEndReached={loadMore}
         ListFooterComponent={<Loader />}
         renderItem={({ item }) => (
