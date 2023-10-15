@@ -1,6 +1,6 @@
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { fetchLaunches } from "./launchesSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import styled from "styled-components/native";
 import LaunchCard from "../../components/LaunchCard";
@@ -12,10 +12,15 @@ export default function LaunchList() {
   const { filteredLaunches, error, isLoading, query } = useAppSelector(
     (state) => state.launches
   );
+  const [limit, setLimit] = useState<number>(10);
 
   useEffect(() => {
-    dispatch(fetchLaunches());
-  }, []);
+    dispatch(fetchLaunches(limit));
+  }, [limit]);
+
+  function loadMore() {
+    setLimit(limit + 10);
+  }
 
   return (
     <>
@@ -24,11 +29,16 @@ export default function LaunchList() {
       ) : (
         ""
       )}
-      {isLoading && <Loading>Carregando nossas missões</Loading>}
+      {isLoading && filteredLaunches.length === 0 && (
+        <Loading>Carregando nossas missões</Loading>
+      )}
       {error && <Error>Houve um erro ao carregar as missões!</Error>}
       <StyledLaunchList
         data={filteredLaunches}
         showsVerticalScrollIndicator={false}
+        keyExtractor={(item) => item.launch_date_utc.toString()}
+        onEndReached={loadMore}
+        ListFooterComponent={<Loader />}
         renderItem={({ item }) => (
           <LaunchCard
             launchName={item.mission_name}
@@ -43,5 +53,11 @@ export default function LaunchList() {
     </>
   );
 }
+
+const Loader = () => {
+  const { filteredLaunches } = useAppSelector((state) => state.launches);
+  if (filteredLaunches.length > 0)
+    return <Loading>Carregando mais missões</Loading>;
+};
 
 const StyledLaunchList = styled.FlatList``;
