@@ -1,7 +1,6 @@
 import { createSlice, Dispatch, PayloadAction } from "@reduxjs/toolkit";
 import { ILaunch } from "./LaunchInterface";
 import axios from "axios";
-import { useAppSelector } from "../../hooks/useAppSelector";
 
 interface LaunchInitialState {
     launches: ILaunch[]
@@ -31,8 +30,9 @@ const launchesSlice = createSlice({
             state.isLoading = true
         },
         fetchLaunchesSuccess(state, action: PayloadAction<ILaunch[]>) {
-            state.launches = action.payload
+            state.launches = [...state.launches, ...action.payload]
             state.isLoading = false
+            state.page += 1
         },
         fetchingFailed(state, action: PayloadAction<boolean>) {
             state.isLoading = false
@@ -51,12 +51,12 @@ const launchesSlice = createSlice({
 
 export const { fetchingLaunches, fetchLaunchesSuccess, fetchingFailed, getLaunchId, filterLaunch } = launchesSlice.actions;
 
-export function fetchLaunches(limit: number) {
+export function fetchLaunches(offset: number) {
     return async function (dispatch: Dispatch) {
         dispatch(fetchingLaunches())
 
         try {
-            const response = await axios.get<ILaunch[]>(`https://api.spacexdata.com/v3/launches?limit=${limit}`);
+            const response = await axios.get<ILaunch[]>(`https://api.spacexdata.com/v3/launches?offset=${offset}&limit=${10}`);
             dispatch(fetchLaunchesSuccess(response.data))
         } catch (error: any) {
             dispatch(fetchingFailed(error.message))

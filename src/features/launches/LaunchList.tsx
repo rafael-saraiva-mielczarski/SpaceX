@@ -12,14 +12,14 @@ export default function LaunchList() {
   const { filteredLaunches, error, isLoading, query } = useAppSelector(
     (state) => state.launches
   );
-  const [limit, setLimit] = useState<number>(10);
+  const [offset, setOffset] = useState<number>(0);
 
   useEffect(() => {
-    dispatch(fetchLaunches(limit));
-  }, [limit]);
+    dispatch(fetchLaunches(offset));
+  }, [offset]);
 
   function loadMore() {
-    setLimit(limit + 10);
+    setOffset(offset + 10);
   }
 
   return (
