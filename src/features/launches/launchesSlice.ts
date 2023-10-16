@@ -51,7 +51,7 @@ const launchesSlice = createSlice({
 
 export const { fetchingLaunches, fetchLaunchesSuccess, fetchingFailed, getLaunchId, filterLaunch } = launchesSlice.actions;
 
-export function fetchLaunches(offset: number) {
+export function fetchLaunches(offset: number, limit: number) {
     return async function (dispatch: Dispatch) {
         dispatch(fetchingLaunches())
 
@@ -60,7 +60,7 @@ export function fetchLaunches(offset: number) {
                 headers: { "content-type": "application/json" }
             }
 
-            const response = await axios.get<ILaunch[]>(`https://api.spacexdata.com/v3/launches?offset=${offset}&limit=${15}`, config);
+            const response = await axios.get<ILaunch[]>(`https://api.spacexdata.com/v3/launches?offset=${offset}&limit=${limit}`, config);
 
             dispatch(fetchLaunchesSuccess(response.data))
         } catch (error: any) {

@@ -3,10 +3,10 @@ import { FontAwesome } from "@expo/vector-icons";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { filterLaunch } from "./launchesSlice";
-import styled from "styled-components/native";
-import Input from "../../components/Input";
 import { RFValue } from "react-native-responsive-fontsize";
 import { Platform } from "react-native";
+import styled from "styled-components/native";
+import Input from "../../components/Input";
 
 export default function SearchBar() {
   const launches = useAppSelector((state) => state.launches.launches);

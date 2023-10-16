@@ -13,21 +13,20 @@ export default function LaunchList() {
     (state) => state.launches
   );
   const [offset, setOffset] = useState<number>(0);
+  const LIMIT = 15;
 
   useEffect(() => {
-    dispatch(fetchLaunches(offset));
+    dispatch(fetchLaunches(offset, LIMIT));
   }, [offset]);
 
   function loadMore() {
-    setOffset(offset + 15);
+    setOffset(offset + LIMIT);
   }
 
   return (
     <>
-      {filteredLaunches.length === 0 && query !== "" && !error ? (
+      {filteredLaunches.length === 0 && query !== "" && !error && (
         <Error>Nenhuma missão com esse nome foi encontrada!</Error>
-      ) : (
-        ""
       )}
       {isLoading && filteredLaunches.length === 0 && (
         <Loading>Carregando nossas missões</Loading>
