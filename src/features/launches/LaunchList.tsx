@@ -9,14 +9,17 @@ import Loading from "../../components/Loading";
 
 export default function LaunchList() {
   const dispatch = useAppDispatch();
-  const { filteredLaunches, error, isLoading, query } = useAppSelector(
-    (state) => state.launches
-  );
+  const { launches, filteredLaunches, error, isLoading, query } =
+    useAppSelector((state) => state.launches);
   const [offset, setOffset] = useState<number>(0);
-  const LIMIT = 15;
+  const [hasMoreData, setHasMoreData] = useState<boolean>(true);
+  const LIMIT = 20;
 
   useEffect(() => {
     dispatch(fetchLaunches(offset, LIMIT));
+    if (launches.length > 90 && offset + 25 > launches.length) {
+      setHasMoreData(false);
+    }
   }, [offset]);
 
   function loadMore() {
@@ -36,7 +39,7 @@ export default function LaunchList() {
         data={filteredLaunches}
         showsVerticalScrollIndicator={false}
         onEndReached={loadMore}
-        ListFooterComponent={<Loader />}
+        ListFooterComponent={hasMoreData && <Loader />}
         renderItem={({ item }) => (
           <LaunchCard
             launchName={item.mission_name}
